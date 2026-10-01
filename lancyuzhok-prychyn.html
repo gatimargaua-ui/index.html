@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Ланцюжок причин: від Панами до льодовиків</title>
+<style>
+:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);
+--bg:#f3f6f4;--card:#fff;--ink:#14282e;--mute:#5a6f75;--line:#d5e0e0;--up:#c2571a;--down:#1f6f9c;--ok:#2f7d4f;--bad:#b23a3a;--acc:#0f5c6e}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0f1b1f;--card:#16282d;--ink:#e6f0ee;--mute:#95adb2;--line:#2a4248;--up:#f08a4b;--down:#6cb6e0;--ok:#63c58a;--bad:#e27a7a;--acc:#5fc0d4}}
+:root[data-theme="dark"]{--bg:#0f1b1f;--card:#16282d;--ink:#e6f0ee;--mute:#95adb2;--line:#2a4248;--up:#f08a4b;--down:#6cb6e0;--ok:#63c58a;--bad:#e27a7a;--acc:#5fc0d4}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*,*:before,*:after{box-sizing:inherit}
+body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.55 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+main{max-width:760px;margin:0 auto;padding:20px 16px 60px}
+h1{font:700 28px/1.2 Georgia,"Times New Roman",serif;margin:8px 0 6px}
+h2{font:700 21px/1.3 Georgia,serif;margin:34px 0 8px}
+h3{font-size:15px;margin:22px 0 6px;color:var(--acc)}
+p{margin:6px 0}.mute{color:var(--mute);font-size:15px}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px 16px;margin:12px 0}
+.sl{margin:10px 0}.sl label{display:flex;justify-content:space-between;font-weight:600}
+input[type=range]{width:100%;accent-color:var(--acc)}
+.sl small{color:var(--mute);display:block}
+.sticky{position:sticky;top:env(safe-area-inset-top,0px);z-index:5}
+.row{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:10px 14px;margin:8px 0}
+.top{display:flex;justify-content:space-between;gap:10px;font-weight:600}
+.val{white-space:nowrap}.val.u{color:var(--up)}.val.d{color:var(--down)}.val.z{color:var(--mute);font-weight:400}
+.bar{position:relative;height:8px;background:var(--line);border-radius:4px;margin:7px 0}
+.bar:after{content:"";position:absolute;left:50%;top:-2px;width:2px;height:12px;background:var(--mute)}
+.fill{position:absolute;top:0;height:100%;border-radius:4px;transition:all .25s}
+.why{font-size:15px;color:var(--mute)}
+button{font:inherit;cursor:pointer;border-radius:9px;border:1px solid var(--acc);background:transparent;color:var(--acc);padding:7px 12px;margin:4px 6px 4px 0}
+button:hover{background:var(--acc);color:var(--bg)}button:focus-visible,input:focus-visible{outline:3px solid var(--acc);outline-offset:2px}
+.opt{display:block;width:100%;text-align:left;margin:6px 0;border-color:var(--line);color:var(--ink)}
+.opt.ok{border-color:var(--ok);background:color-mix(in srgb,var(--ok) 18%,transparent)}
+.opt.no{border-color:var(--bad);background:color-mix(in srgb,var(--bad) 15%,transparent)}
+.fb{margin-top:8px;font-size:15px}
+@media (prefers-reduced-motion:reduce){.fill{transition:none}}
+</style>
+</head>
+<body>
+<main>
+<h1>Ланцюжок причин: від Панами до льодовиків</h1>
+<p>Тут ти крутиш три «ручки» природи й дивишся, що станеться далі по ланцюжку. Біля кожної ланки написано, <b>чому</b> вона спрацьовує. Це спрощена схема, а не точний прогноз: вона показує напрямок змін (вгору чи вниз) і те, що чим зумовлене.</p>
+
+<div class="panel sticky" id="ctl">
+  <div class="sl"><label for="P"><span>Підйом Панами (закритість коридору)</span><span id="Pv">0%</span></label><input id="P" type="range" min="0" max="100" value="0"><small>0% = океани ще з'єднані, 100% = суходіл закрив прохід</small></div>
+  <div class="sl"><label for="C"><span>Прохолодне літо (орбіта Землі)</span><span id="Cv">0%</span></label><input id="C" type="range" min="0" max="100" value="0"><small>Цикли Мілановича, докладніше в Блоці 4</small></div>
+  <div class="sl"><label for="G"><span>Прісна талая вода Ґренландії</span><span id="Gv">0%</span></label><input id="G" type="range" min="0" max="100" value="0"><small>Сценарій сучасного потепління</small></div>
+  <button id="rst">Скинути все до нуля</button>
+</div>
+
+<div id="chain"></div>
+
+<h2>Передбач, а потім перевір</h2>
+<p class="mute">Спочатку вибери відповідь, не чіпаючи ручки. Потім перевір себе на моделі й прочитай пояснення.</p>
+<div id="scn"></div>
+
+<h2>Перевір, чи все зрозуміло</h2>
+<div id="qz"></div>
+
+<div class="panel">
+<h3>Останнє завдання: розкажи вголос</h3>
+<p>Без підглядання поясни комусь за 2 хвилини: <b>чому теплий Гольфстрім привів до льодовиків, а не до потепління Арктики?</b> Використай слова: сіль, волога, сніг, прохолодне літо, альбедо. Якщо десь застрягла, повернися до ланки в ланцюжку вище й прочитай, чому вона спрацьовує.</p>
+</div>
+</main>
+<script>
+const $=id=>document.getElementById(id);
+const cl=v=>Math.max(-100,Math.min(100,v));
+function calc(P,C,G){
+  const S=cl(P-0.8*G),A=cl(0.9*S),E=cl(0.8*A);
+  let alb=0,I=0,T=0,Sn=0;
+  for(let i=0;i<8;i++){T=cl(0.5*A-C-0.3*alb);Sn=cl(0.8*E-0.2*Math.max(T,0));I=cl(Sn-0.9*T);alb=cl(0.5*I);}
+  return {P,S,A,E,T,Sn,I,alb,L:cl(-0.6*I),D:cl(0.4*I)};
+}
+const groups=[
+ ["Океан",[
+  ["P","Морський коридор закрито","Чим більше суходолу між океанами, тим менше води переходить із Атлантики в Тихий."],
+  ["S","Солоність Атлантики","Вітер несе пару через перешийок в Тихий океан, а сіль лишається. Вихід для солі закрито. Прісна вода з Ґренландії, навпаки, розбавляє."],
+  ["A","Сила конвеєра (AMOC)","Солона вода важча, тому на півночі тоне. На її місце приходить тепла вода з тропіків. Менше солі означає слабший конвеєр."]]],
+ ["Північ",[
+  ["E","Вологість над північною Атлантикою","Тепла вода над холодним повітрям дає багато пари, як гарячий душ у холодній ванній."],
+  ["T","Температура високих широт","Течія несе тепло, тож тепліше. Прохолодне літо й альбедо охолоджують."],
+  ["Sn","Сніг, що випадає","Потрібні вологість і холод: без вологи снігу немає, а в теплі випадає дощ."],
+  ["I","Льодовикові щити","Лід росте, лише коли снігу випало більше, ніж розтануло влітку."]]],
+ ["Планета",[
+  ["alb","Альбедо (відбиття світла)","Білий лід відбиває сонце. Холодніше означає ще більше снігу. Це петля підсилення."],
+  ["L","Рівень океану","Вода, що застрягла в льоду, не повертається в океан, тож рівень падає."],
+  ["D","Сухість клімату","Холодне повітря й холодні океани дають менше вологи й слабші мусони."]]]
+];
+function word(v){const a=Math.abs(v);if(a<8)return "майже без змін";const s=a>60?"сильно ":"";return s+(v>0?"зростає ↑":"падає ↓");}
+function render(){
+  const P=+$("P").value,C=+$("C").value,G=+$("G").value;
+  $("Pv").textContent=P+"%";$("Cv").textContent=C+"%";$("Gv").textContent=G+"%";
+  const r=calc(P,C,G);let h="";
+  for(const [g,items] of groups){
+    h+=`<h3>${g}</h3>`;
+    for(const [k,n,w] of items){
+      const v=r[k],cls=Math.abs(v)<8?"z":v>0?"u":"d";
+      const left=v>=0?50:50+v/2,width=Math.abs(v)/2;
+      h+=`<div class="row"><div class="top"><span>${n}</span><span class="val ${cls}">${k==="P"?(P?"закрито "+P+"%":"відкрито"):word(v)}</span></div>
+      <div class="bar" role="img" aria-label="${n}: ${word(v)}"><div class="fill" style="left:${left}%;width:${width}%;background:${v>=0?"var(--up)":"var(--down)"}"></div></div>
+      <div class="why"><b>Чому:</b> ${w}</div></div>`;
+    }
+  }
+  $("chain").innerHTML=h;
+}
+["P","C","G"].forEach(i=>$(i).addEventListener("input",render));
+$("rst").onclick=()=>{["P","C","G"].forEach(i=>$(i).value=0);render();};
+
+const scn=[
+ {set:[80,0,0],t:"Лише Панама, без прохолодного літа",q:"Що станеться з льодовиковими щитами?",
+  o:["Швидко зростуть: вологи багато, а це головне","Майже не зміняться: сніг випадає, але літо його розтоплює","Розтануть повністю"],c:1,
+  e:"Панама дала вологу (лід ↑ не гарантований), але теплий Гольфстрім водночас зігрів північ. Без прохолодного літа сніг тане. Панама створює умови, але сама зледеніння не вмикає."},
+ {set:[80,60,0],t:"Панама плюс прохолодне літо",q:"Що станеться тепер?",
+  o:["Сніг не встигає танути, щити ростуть, а альбедо підсилює похолодання","Нічого, бо літо ні на що не впливає","Щити тануть, бо течія тепла"],c:0,
+  e:"Тепер є і волога (Панама), і холодне літо (орбіта). Сніг лишається з року в рік, лід росте, і вмикається петля альбедо. Так виглядає старт плейстоцену."},
+ {set:[0,0,70],t:"Лише талі води Ґренландії (Панама вимкнена)",q:"Що станеться з конвеєром і Європою?",
+  o:["Конвеєр посилиться, у Європі потепліє","Конвеєр слабшає, північ Атлантики холоднішає, зокрема й Європа","Нічого не зміниться"],c:1,
+  e:"Прісна вода розбавляє океан, вона легша й не тоне, тож конвеєр слабшає і приносить менше тепла. Це питання, яке вчені досліджують зараз, а наша модель лише показує логіку, не прогноз."}
+];
+scn.forEach((s,i)=>{
+  const d=document.createElement("div");d.className="panel";
+  d.innerHTML=`<b>${s.t}</b><p>${s.q}</p>`+s.o.map((o,j)=>`<button class="opt" data-j="${j}">${o}</button>`).join("")+`<div class="fb" aria-live="polite"></div><button class="go">Показати на моделі</button>`;
+  d.querySelectorAll(".opt").forEach(b=>b.onclick=()=>{
+    d.querySelectorAll(".opt").forEach(x=>x.classList.remove("ok","no"));
+    const ok=+b.dataset.j===s.c;b.classList.add(ok?"ok":"no");
+    d.querySelector(".fb").textContent=(ok?"Так. ":"Ще не те. Натисни «Показати на моделі» й подивись. ")+(ok?s.e:"");
+  });
+  d.querySelector(".go").onclick=()=>{["P","C","G"].forEach((k,n)=>$(k).value=s.set[n]);render();$("ctl").scrollIntoView({behavior:"smooth"});};
+  $("scn").appendChild(d);
+});
+
+const qz=[
+ ["Чому після закриття Панами Атлантика стала солонішою?",["Пара з Атлантики випадає дощем над Тихим океаном, а сіль лишається","Панама додала солі у воду","Атлантика охолола"],0,"Вода випаровується й переноситься вітром, а сіль не випаровується."],
+ ["Чому лише Панами недостатньо, щоб виросли щити?",["Бо Панама не дає вологи","Бо без прохолодного літа сніг за літо тане","Бо льодовикам потрібне тепло"],1,"Вологи Панама додала, але сніг накопичується тільки тоді, коли літо його не розтоплює."],
+ ["Яка це петля: більше льоду → більше відбитого світла → холодніше → ще більше льоду?",["Гальмування, бо лід зупиняє потепління","Підсилення, бо кожен крок посилює попередній","Жодна"],1,"Зміна сама себе підсилює, тому петля підсилення."],
+ ["Чому під час зледенінь рівень океану падав?",["Вода випаровувалася в космос","Вода застрягала в льодовиках на суходолі","Океан стискався від холоду"],1,"Льодовики працювали як «консервні банки» для води."]
+];
+qz.forEach(([q,o,c,e])=>{
+  const d=document.createElement("div");d.className="panel";
+  d.innerHTML=`<p><b>${q}</b></p>`+o.map((t,j)=>`<button class="opt" data-j="${j}">${t}</button>`).join("")+`<div class="fb" aria-live="polite"></div>`;
+  d.querySelectorAll(".opt").forEach(b=>b.onclick=()=>{
+    d.querySelectorAll(".opt").forEach(x=>x.classList.remove("ok","no"));
+    const ok=+b.dataset.j===c;b.classList.add(ok?"ok":"no");
+    d.querySelector(".fb").textContent=ok?"Вірно. "+e:"Спробуй ще раз і згадай ланку «Чому» в ланцюжку вище.";
+  });
+  $("qz").appendChild(d);
+});
+render();
+</script>
+</body>
+</html>
